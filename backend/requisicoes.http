@@ -26,11 +26,39 @@ Content-Type: application/json
 DELETE http://localhost:5000/donos/3
 
 
-### ----------------------------------------------------------
-### DAQUI PARA BAIXO SAO AS ROTAS QUE VOCE VAI ESCREVER
-### Elas so vao funcionar depois que voce criar as rotas de pets
-### no arquivo app.py
-### ----------------------------------------------------------
+### Listar todos os pets (com nome do dono)
+GET http://localhost:5000/pets
+
+### Listar apenas os pets de um dono (filtro por query param)
+GET http://localhost:5000/pets?dono_id=1
+
+### Buscar um pet pelo id
+GET http://localhost:5000/pets/1
+
+### Cadastrar um novo pet
+POST http://localhost:5000/pets
+Content-Type: application/json
+
+{
+    "nome": "Bidu",
+    "especie": "cachorro",
+    "idade": 2,
+    "dono_id": 1
+}
+
+### Atualizar um pet
+PUT http://localhost:5000/pets/1
+Content-Type: application/json
+
+{
+    "nome": "Rex",
+    "especie": "cachorro",
+    "idade": 5,
+    "dono_id": 1
+}
+
+### Remover um pet
+DELETE http://localhost:5000/pets/1
 
 ### Listar todos os pets (com o nome do dono)
 GET http://localhost:5000/pets
