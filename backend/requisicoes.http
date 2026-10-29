@@ -1,95 +1,126 @@
 ### Listar todos os donos
 GET http://localhost:5000/donos
 
-### Buscar um dono pelo id
+### Buscar dono por ID
 GET http://localhost:5000/donos/1
 
-### Cadastrar um novo dono
+### Buscar dono inexistente (deve retornar 404)
+GET http://localhost:5000/donos/999
+
+### Cadastrar novo dono
 POST http://localhost:5000/donos
 Content-Type: application/json
 
 {
-    "nome": "Diego Souza",
-    "telefone": "45999110004"
+  "nome": "Carlos Andrade",
+  "telefone": "45999110003"
 }
 
-### Atualizar um dono
+### Cadastrar dono com erro de validação (deve retornar 400)
+POST http://localhost:5000/donos
+Content-Type: application/json
+
+{
+  "nome": "Incompleto"
+}
+
+### Atualizar dono existente
 PUT http://localhost:5000/donos/1
 Content-Type: application/json
 
 {
-    "nome": "Ana Paula Ribeiro da Silva",
-    "telefone": "45999110001"
+  "nome": "Ana Paula Ribeiro Silva",
+  "telefone": "45999110001"
 }
 
-### Remover um dono
+### Atualizar dono inexistente (deve retornar 404)
+PUT http://localhost:5000/donos/999
+Content-Type: application/json
+
+{
+  "nome": "Inexistente",
+  "telefone": "00000000"
+}
+
+### Remover dono
 DELETE http://localhost:5000/donos/3
 
+### Listar pets de um dono específico (Aula 03)
+GET http://localhost:5000/donos/1/pets
 
-### Listar todos os pets (com nome do dono)
+### Listar pets de um dono inexistente (deve retornar 404)
+GET http://localhost:5000/donos/999/pets
+
+# ==========================================
+# REQUISIÇÕES DE PETS
+# ==========================================
+
+### Listar todos os pets (com dono_nome via relacionamento)
 GET http://localhost:5000/pets
 
-### Listar apenas os pets de um dono (filtro por query param)
+### Filtrar pets por dono_id (Query Param)
 GET http://localhost:5000/pets?dono_id=1
 
-### Buscar um pet pelo id
+### Buscar pet por ID
 GET http://localhost:5000/pets/1
 
-### Cadastrar um novo pet
+### Buscar pet inexistente (deve retornar 404)
+GET http://localhost:5000/pets/999
+
+### Cadastrar pet
 POST http://localhost:5000/pets
 Content-Type: application/json
 
 {
-    "nome": "Bidu",
-    "especie": "cachorro",
-    "idade": 2,
-    "dono_id": 1
+  "nome": "Bidu",
+  "especie": "cachorro",
+  "idade": 2,
+  "dono_id": 1
 }
 
-### Atualizar um pet
-PUT http://localhost:5000/pets/1
-Content-Type: application/json
-
-{
-    "nome": "Rex",
-    "especie": "cachorro",
-    "idade": 5,
-    "dono_id": 1
-}
-
-### Remover um pet
-DELETE http://localhost:5000/pets/1
-
-### Listar todos os pets (com o nome do dono)
-GET http://localhost:5000/pets
-
-### Listar apenas os pets de um dono (filtro por query param)
-GET http://localhost:5000/pets?dono_id=1
-
-### Buscar um pet pelo id
-GET http://localhost:5000/pets/1
-
-### Cadastrar um novo pet
+### Cadastrar pet sem campos obrigatórios (deve retornar 400)
 POST http://localhost:5000/pets
 Content-Type: application/json
 
 {
-    "nome": "Bidu",
-    "especie": "cachorro",
-    "idade": 2,
-    "dono_id": 1
+  "nome": "Pipoca"
 }
 
-### Atualizar um pet
+### Cadastrar pet com dono_id inexistente (deve retornar 404)
+POST http://localhost:5000/pets
+Content-Type: application/json
+
+{
+  "nome": "Ghost",
+  "especie": "gato",
+  "idade": 1,
+  "dono_id": 999
+}
+
+### Atualizar pet existente
 PUT http://localhost:5000/pets/1
 Content-Type: application/json
 
 {
-    "nome": "Rex",
-    "especie": "cachorro",
-    "idade": 5,
-    "dono_id": 1
+  "nome": "Rex Silva",
+  "especie": "cachorro",
+  "idade": 5,
+  "dono_id": 1
 }
 
-### Remover um pet
-DELETE http://localhost:5000/pets/5
+### Atualizar pet inexistente (deve retornar 404)
+PUT http://localhost:5000/pets/999
+Content-Type: application/json
+
+{
+  "nome": "Inexistente",
+  "especie": "desconhecida",
+  "idade": 0,
+  "dono_id": 1
+}
+
+### Remover pet
+DELETE http://localhost:5000/pets/2
+
+### Remover pet inexistente (deve retornar 404)
+DELETE http://localhost:5000/pets/999
