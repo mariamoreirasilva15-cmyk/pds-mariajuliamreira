@@ -16,12 +16,21 @@ Content-Type: application/json
   "telefone": "45999110003"
 }
 
-### Cadastrar dono com erro de validação (deve retornar 400)
+### Cadastrar dono com erro de validação - campo faltando (deve retornar 400)
 POST http://localhost:5000/donos
 Content-Type: application/json
 
 {
   "nome": "Incompleto"
+}
+
+### Cadastrar dono com erro de validação - campos vazios (deve retornar 400)
+POST http://localhost:5000/donos
+Content-Type: application/json
+
+{
+  "nome": "   ",
+  "telefone": ""
 }
 
 ### Atualizar dono existente
@@ -86,7 +95,40 @@ Content-Type: application/json
   "nome": "Pipoca"
 }
 
-### Cadastrar pet com dono_id inexistente (deve retornar 404)
+### Cadastrar pet com nome vazio (deve retornar 400 - Aula 05)
+POST http://localhost:5000/pets
+Content-Type: application/json
+
+{
+  "nome": "",
+  "especie": "cachorro",
+  "idade": 3,
+  "dono_id": 1
+}
+
+### Cadastrar pet com idade em texto (deve retornar 400 - Aula 05)
+POST http://localhost:5000/pets
+Content-Type: application/json
+
+{
+  "nome": "Rex",
+  "especie": "cao",
+  "idade": "dois",
+  "dono_id": 1
+}
+
+### Cadastrar pet com idade negativa (deve retornar 400 - Aula 05)
+POST http://localhost:5000/pets
+Content-Type: application/json
+
+{
+  "nome": "Rex",
+  "especie": "cao",
+  "idade": -5,
+  "dono_id": 1
+}
+
+### Cadastrar pet com dono_id inexistente (deve retornar 400 - Aula 05)
 POST http://localhost:5000/pets
 Content-Type: application/json
 
